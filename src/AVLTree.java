@@ -1,17 +1,25 @@
 public class AVLTree extends BinarySearchTreeRecursive {
     private Node root;
+//Utilizando herança para reaproveitar o método de inserção e remoção da BST
 
+//sobreescreve o método de inserção podendo assim navegar por entre os nós
     @Override
      Node insertNode(int number, Node node) {
         node = super.insertNode(number, node);
-
+        //chama o método da super classe 
+        //Começando a partir da raiz, todo nó inserido terá a altura inicial =0
+        // a chamada recursiva fará a altura de todos os nós envolvidos na subárvore em questão ser atualizada.
+        
         updateHeight(node);
+        //após atualizada, será feito o rebalanceamento utilizando o fator de balanceamento
+        //com a altura de cada nó
 
         return rebalance(node);
+        
     }
 
     // private rebalance
-
+    
     private int balanceFactor(Node node) {
         return (height(node.getRight()) - height(node.getLeft()));
     }
