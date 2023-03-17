@@ -48,7 +48,14 @@ public class BinarySearchTreeRecursive {
                 else if (node.getRight() == null)
                     node = node.getLeft();
                 else{
-                    
+                    Node parent= node;
+                    Node child = node.getLeft();
+                    while(child.getRight() != null){
+                        parent = child;
+                        child = child.getRight();
+                    }
+                    parent.setRight(child.getLeft());
+                    node.setData(child.getData());
                 }
             }
         } else if (node.getData() < number) {
